@@ -95,8 +95,39 @@ nav a[aria-current="page"],nav a.on{color:var(--accent);background:var(--shell)}
 .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
 .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .g4{grid-template-columns:repeat(4,minmax(0,1fr))}
-.card{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
-.card>img{height:180px;width:100%;object-fit:cover}
+.card{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;display:flex;flex-direction:column;
+  transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(20,24,28,.09);border-color:#D6D2D1}
+.card>img{height:180px;width:100%;object-fit:cover;transition:transform .55s ease}
+.card:hover>img{transform:scale(1.045)}
+
+/* sections rise into view; the reduced-motion block below disables this */
+.reveal{opacity:0;transform:translateY(38px) scale(.985);
+  transition:opacity .78s cubic-bezier(.16,.7,.28,1),transform .78s cubic-bezier(.16,.7,.28,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none}}
+
+/* Cross-fading hero frames that drift continuously.
+   Each frame holds two copies of its image side by side in a track. The track
+   travels exactly one image width and repeats, so the second copy lands where the
+   first began and the loop is invisible. The images have their left and right
+   edges faded to black, so the join between copies cannot be seen. */
+@keyframes heroWrap{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hero-frame{position:absolute;inset:0;overflow:hidden;opacity:0;transition:opacity 1.9s ease-in-out}
+.hero-frame.is-on{opacity:1}
+.hero-track{position:absolute;top:0;left:0;height:100%;width:200%;display:flex}
+.hero-track>*{width:50%;height:100%;flex:none;position:relative}
+.hero-track img{width:100%;height:100%;object-fit:cover;display:block}
+@media (prefers-reduced-motion: no-preference){
+  .hero-track{animation:heroWrap 90s linear infinite;will-change:transform}
+}
+@media (max-width:700px){.hero .hero-frame:not(:first-child){display:none}}
+@media (prefers-reduced-motion: reduce){
+  .hero .hero-frame:not(:first-child){display:none}
+  .hero .hero-frame:first-child{opacity:1}
+  .hero-track{width:100%}
+  .hero-track>*:last-child{display:none}
+}
 .card-b{padding:22px;flex:1;display:flex;flex-direction:column}
 .card h3,.card h4{margin-bottom:9px}
 .card p{font-size:15.5px;line-height:1.55;color:var(--muted);margin-bottom:14px;flex:1}
@@ -150,6 +181,21 @@ a.tag{border-bottom:1px solid var(--line)}
 .yearhead{font-family:var(--serif);font-size:22px;font-weight:600;margin:34px 0 4px;
   padding-bottom:8px;border-bottom:2px solid var(--ink);max-width:820px}
 .note{border-left:3px solid var(--highlight);padding-left:18px;font-size:15px;color:var(--muted)}
+
+/* ---------- interactive neural tube ---------- */
+.ntube{display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:center;max-width:900px}
+.ntube svg{width:100%;height:auto;display:block}
+.ntube-ctl{margin-bottom:26px}
+.ntube-ctl label{display:block;font-size:14px;font-weight:600;margin-bottom:2px}
+.ntube-ctl .hint{font-size:13.5px;color:var(--muted);margin-bottom:10px}
+.ntube-ctl input[type=range]{width:100%;accent-color:var(--accent);height:24px}
+.ntube-read{font-size:14.5px;line-height:1.6;border-left:3px solid var(--accent);
+  padding-left:16px;color:var(--ink);min-height:52px}
+.ntube-read b{font-weight:600}
+.ntube-key{display:flex;flex-wrap:wrap;gap:7px 14px;margin-top:16px;font-size:13px;color:var(--muted)}
+.ntube-key span{display:flex;align-items:center;gap:6px}
+.ntube-key i{width:11px;height:11px;border-radius:2px;display:inline-block}
+@media(max-width:760px){.ntube{grid-template-columns:1fr;gap:28px;max-width:420px}}
 
 /* ---------- blog ---------- */
 .post-meta{font-size:15px;color:var(--muted);margin-bottom:26px}
