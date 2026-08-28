@@ -28,6 +28,9 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--highlight);outline-
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px}
 .prose{max-width:var(--prose)}
 .sec{padding:96px 0}
+/* two prose sections on the same background that read as one block */
+.sec--runin{padding-bottom:52px}
+.sec--runon{padding-top:0}
 .sec--tight{padding:64px 0}
 .shell{background:var(--shell)}
 .eyebrow{font-size:13px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
