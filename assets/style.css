@@ -83,7 +83,7 @@ nav a[aria-current="page"],nav a.on{color:var(--accent);background:var(--shell)}
 .phead .in{position:relative;height:100%;display:flex;align-items:flex-end;padding-bottom:38px}
 .phead--pale{background:var(--shell)}
 .phead--pale .veil{background:linear-gradient(90deg,rgba(247,246,245,.96) 0%,rgba(247,246,245,.8) 45%,rgba(247,246,245,.1) 100%)}
-.hero h1{color:#fff;font-size:52px;line-height:1.08}
+.hero h1{color:#fff;font-size:52px;line-height:1.08;margin-bottom:32px}
 .hero p{color:rgba(255,255,255,.88);font-size:21px;line-height:1.5;margin:22px 0 30px;max-width:560px}
 .phead h1{color:#fff}
 .phead--pale h1{color:var(--ink)}
@@ -245,7 +245,7 @@ footer ul{list-style:none;line-height:2}
   .g2,.g3,.g4{grid-template-columns:1fr}
   .pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .hero{height:auto;min-height:440px}
-  .hero h1{font-size:34px}
+  .hero h1{font-size:34px;margin-bottom:24px}
   .hero p{font-size:18px}
   .phead{height:220px}
   .lede{font-size:19px}
